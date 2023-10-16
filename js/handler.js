@@ -12,6 +12,8 @@ var get_busniess_id = null;
 var get_tag_id = null;
 var get_media_by_tag = null;
 
+var medialist = null;
+
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
     console.log(response);
@@ -22,14 +24,14 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
         get_media_by_tag.then(
-            function(datalist) { console.log(datalist); },
+            function(datalist) { medialist = datalist; },
             function(code, msg) { console.log(msg); }
         );
     } else {
-        // login.then(
-        //     function(response) { checkLoginState(); },
-        //     function(code, msg) { console.log(msg); }
-        // );
+        login.then(
+            function(response) { checkLoginState(); },
+            function(code, msg) { console.log(msg); }
+        );
     }
 }
 
@@ -56,7 +58,6 @@ window.fbAsyncInit = function() {
             FB.login(function(response) {
                 if (response.authResponse) {
                     FB.api('/me', function(response) {
-                        console.log(response);
                         if (response.error != null)
                         reject(response.error.code, response.error.message);
                         else
@@ -85,7 +86,6 @@ window.fbAsyncInit = function() {
       }
 
       FB.api('/'+PAGE_ID+'?fields=instagram_business_account', function(response) {
-          console.log(response);
           if (response.error != null)
             reject(response.error.code, response.error.message);
           else
@@ -112,7 +112,6 @@ window.fbAsyncInit = function() {
 
       function getTagID(bid) {
         FB.api('ig_hashtag_search?user_id='+bid+'&q='+TAG_NAME, function(response) {
-            console.log(response);
             if (response.error != null)
               reject(response.error.code, response.error.message);
             else
@@ -137,8 +136,7 @@ window.fbAsyncInit = function() {
       }
 
       function getMedia(tid) {
-        FB.api(tid+'/recent_media?user_id='+business_id+'&fields=id,media_type', function(response) {
-            console.log(response);
+        FB.api(tid+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp', function(response) {
             if (response.error !== null)
               reject(response.error.code, response.error.message);
             else

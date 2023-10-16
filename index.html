@@ -1,12 +1,31 @@
 <html>
 <head>
     <title>VTC Skill Fiesta - IT Sarah</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div id="id"></div>
-    <div id="data-content"></div>
-    <script src="js/handler.js">
-        
+    <div class="container">
+        <div class="row" id="row1">
+        </div>
+        <div class="row" id="row2">
+        </div>
+    </div>
+    <script src="js/handler.js"></script>
+    <script>
+        const delay = ms => new Promise(res => setTimeout(res, ms));
+
+        const yourFunction = async () => {
+            while (true)
+            {
+                await delay(5000);
+                console.log("Waited 5s");
+            }
+        };
+
+        yourFunction();
     </script>
 </body>
 </html>
