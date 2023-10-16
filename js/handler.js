@@ -1,7 +1,6 @@
 let PAGE_ID = "139361189263256";
 let TAG_NAME = "cat";
 
-var access_token = "";
 var business_id = null;
 var tag_id = null;
 
@@ -20,15 +19,21 @@ function statusChangeCallback(response) {
         // access_token = response.authResponse.accessToken;
         // console.log(access_token);
         // Logged into your app and Facebook.
-        getUserName()
+        getBusiessID()
           .then(
-            (name) => {
-              console.log(name);
-              return getBusiessID();
+            (response) => {
+              business_id = response.instagram_business_account.id;
+              return getTagID();
             }
           ).then(
-            (id) => {
-              console.log(id);
+            (response) => {
+              tag_id = response.data[0].id;
+              return getMedia();
+            }
+          ).then(
+            (response) => {
+              medialist = response.data;
+              loopList();
             }
           ).catch(
             (error) => {
@@ -114,3 +119,98 @@ function getTagID() {
 function getMedia() {
   return getAllPosts('/'+tag_id+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
 }
+
+var newList = null;
+var currentList = null;
+var isFirstLoad = false;
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+function firstLoad () 
+{
+    medialist = medialist.filter(item => (item.media_type != "CAROUSEL_ALBUM"));
+
+    medialist.sort(function(a, b){
+        if (a.timestamp < b.timestamp) {return -1;}
+        if (a.timestamp > b.timestamp) {return 1;}
+        return 0;
+    });
+
+    newList = medialist;
+    
+    for (var i = 0; i < newList.length >= 8 ? 8 : newList.length; i++)
+    {
+        AddItem(i, newList[i].media_url, newList[i].media_type);
+    }
+
+    currentList = newList;
+};
+
+function AddItem (index, link, type)
+{
+    const row_id = (index != 0 && index % 4) ? "row1" : "row2";
+
+    const newItem = document.createElement('div');
+    newItem.classList.add('col-2');
+
+    var newhtml = "";
+
+    if (type == "IMAGE")
+    {
+        newhtml = '<img class="img-responsive" src="'+link+'">';
+    }
+    else if (type == "VIDEO")
+    {
+        newhtml = '<video loop width="100%" height="100%">'+
+                    '<source src="'+link+'" type="video/mp4">'+
+                    '</video>';
+    }
+
+    document.getElementById(row_id).appendChild(newItem).innerHTML = newhtml;
+}
+
+function RemoveLastItem (lastRange)
+{
+    if (lastRange >= 4)
+    {
+        document.getElementById("row2").innerHTML = '';
+        
+        if (lastRange - 4 > 0)
+        {
+            const row1 = document.getElementById("row1");
+            for (var i = 0; i < lastRange - 4; i++)
+                row1.removeChild(menu.lastElementChild);
+        }
+    }
+    else
+    {
+        const row2 = document.getElementById("row2");
+        for (var i = 0; i < lastRange - 4; i++)
+            row2.removeChild(menu.lastElementChild);
+    }
+}
+
+const loopList = async () => {
+
+  if (medialist != null && !isFirstLoad)
+  {
+      firstLoad();
+      isFirstLoad = true;
+  }
+  else if (medialist != null)
+  {
+      const comingList = medialist.filter((item) => !newList.includes(item));
+
+      for (var i = 0; i < comingList.length >= 8 ? 8 : comingList.length; i++)
+      {
+          AddItem(i, comingList[i].media_url, comingList[i].media_type);
+      }
+      
+      RemoveLastItem(newList.length);
+  }
+
+  // wait for 20000 in launch
+  await delay(5000);
+
+  getMedia().then((response)=>{loopList();});
+};
