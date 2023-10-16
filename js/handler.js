@@ -18,8 +18,8 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
         get_busniess_id.then(
-          function(error){console.log(error);},
-          function(id){console.log("id:"+id);}
+          function(id){console.log(id);},
+          function(error){console.log(error);}
         );
     } else {
       login();
@@ -79,6 +79,29 @@ function getBusiessID(resolve, reject) {
       {
         business_id = response.instagram_business_account.id;
         resolve(business_id);
+      }
+  });
+}
+
+function getTagID(resolve, reject) {
+  FB.api('ig_hashtag_search?user_id='+business_id+'&q='+TAG_NAME, function(response) {
+      if (response.error != null)
+          reject(response.error);
+      else
+      {
+          tag_id = response.data[0].id;
+          resolve(tag_id);
+      }
+  });
+}
+
+function getMedia(resolve, reject) {
+  FB.api(tid+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp', function(response) {
+      if (response.error != null)
+          reject(response.error);
+      else
+      {
+          resolve(response.data);
       }
   });
 }
