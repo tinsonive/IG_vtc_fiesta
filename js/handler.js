@@ -15,7 +15,10 @@ function statusChangeCallback(response) {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
-        
+        getBusiessID.then(
+          function(error){console.log(error);},
+          function(id){console.log("id:"+id);}
+        );
     } else {
       login();
     }
@@ -61,3 +64,18 @@ function login() {
       'instagram_manage_insights'
   ]});
 }
+
+function getBusiessID(resolve, reject) {
+  FB.api('/'+PAGE_ID+'?fields=instagram_business_account', function(response) {
+      if (response.error != null)
+      {
+        reject(response.error);
+      }
+      else
+      {
+        business_id = response.instagram_business_account.id;
+        resolve(business_id);
+      }
+  });
+}
+var get_busniess_id = new Promise(getBusiessID);
