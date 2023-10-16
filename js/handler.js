@@ -127,7 +127,7 @@ function AddItem (index, link, type)
     const row_id = (index < 4) ? "row1" : "row2";
 
     const newItem = document.createElement('div');
-    newItem.classList.add('col-3');
+    newItem.classList.add('col-3', 'px-0');
 
     var newhtml = "";
 
