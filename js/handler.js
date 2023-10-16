@@ -127,17 +127,17 @@ function AddItem (index, link, type)
     const row_id = (index < 4) ? "row1" : "row2";
 
     const newItem = document.createElement('div');
-    newItem.classList.add('col-2');
+    newItem.classList.add('col-3');
 
     var newhtml = "";
 
     if (type == "IMAGE")
     {
-        newhtml = '<img width="25%" height="50%" class="img-responsive" src="'+link+'">';
+        newhtml = '<img width="100%" height="100%" class="img-responsive" src="'+link+'">';
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<video loop width="25%" height="50%">'+
+        newhtml = '<video loop width="100%" height="100%">'+
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video>';
     }
@@ -196,7 +196,7 @@ const loopList = async () => {
   lastList = medialist;
 
   // wait for 20000 in launch
-  await delay(5000);
+  await delay(20000);
 
   getMedia().then((response)=>{loopList();});
 };
