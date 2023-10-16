@@ -200,6 +200,8 @@ const loopList = async () => {
 
   }
 
+  console.log(medialist);
+
   lastList = medialist;
 
   // wait for 20000 in launch
