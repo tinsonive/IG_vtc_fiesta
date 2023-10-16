@@ -20,10 +20,21 @@ function statusChangeCallback(response) {
         // access_token = response.authResponse.accessToken;
         // console.log(access_token);
         // Logged into your app and Facebook.
-        getBusiessID(
-          function(id){console.log(id);},
-          function(error){console.log(error);}
-        );
+        getUserName()
+          .then(
+            (name) => {
+              console.log(name);
+              return getBusiessID
+            }
+          ).then(
+            (id) => {
+              console.log(id);
+            }
+          ).catch(
+            (error) => {
+              console.log(error);
+            }
+          );
     } else {
       login();
     }
@@ -73,31 +84,27 @@ function login() {
   ]});
 }
 
-function getUserName(resolve, reject) {
-  FB.api('/me', function(response) {
-      if (response.error != null)
-      {
-        reject(response.error);
-      }
-      else
-      {
-        resolve(response.name);
-      }
+function getAllPosts(uri) {
+  return new Promise((resolve, reject) => {
+    function recursiveAPICall(apiURL) {
+      FB.api(apiURL, (response) => {
+        if (response && response.error) {
+          reject(response.error);
+        } else {
+          resolve(response);
+        }
+      });
+    }
+    recursiveAPICall(uri);
   });
 }
 
-function getBusiessID(resolve, reject) {
-  FB.api('/'+PAGE_ID+'?fields=instagram_business_account', function(response) {
-      if (response.error != null)
-      {
-        reject(response.error);
-      }
-      else
-      {
-        business_id = response.instagram_business_account.id;
-        resolve(business_id);
-      }
-  });
+function getUserName(resolve, reject) {
+  return getAllPosts('/me');
+}
+
+function getBusiessID() {
+  return getAllPosts('/'+PAGE_ID+'?fields=instagram_business_account');
 }
 
 function getTagID(resolve, reject) {
