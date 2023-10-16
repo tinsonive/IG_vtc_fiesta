@@ -52,7 +52,7 @@ window.fbAsyncInit = function() {
 
 function login() {
   FB.login(function(response) {
-      console.log(response);
+      checkLoginState();
   },{scope: [
       'pages_show_list', 
       'instagram_basic', 
