@@ -40,7 +40,6 @@ window.fbAsyncInit = function() {
         version          : 'v18.0'
     });
 
-
   get_busniess_id = new Promise(getBusiessID);
 
   FB.getLoginStatus(function(response) {
@@ -83,4 +82,3 @@ function getBusiessID(resolve, reject) {
       }
   });
 }
-var get_busniess_id = new Promise(getBusiessID);
