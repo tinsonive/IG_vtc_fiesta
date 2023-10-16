@@ -29,18 +29,6 @@ function statusChangeCallback(response) {
     }
 }
 
-function login() {
-  FB.login(function(response) {
-      console.log(response);
-  },{scope: [
-      'pages_show_list', 
-      'instagram_basic', 
-      'instagram_content_publish', 
-      'pages_read_engagement', 
-      'instagram_manage_insights'
-  ]});
-}
-
 function checkLoginState() {
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
@@ -69,3 +57,15 @@ window.fbAsyncInit = function() {
     js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+function login() {
+  FB.login(function(response) {
+      console.log(response);
+  },{scope: [
+      'pages_show_list', 
+      'instagram_basic', 
+      'instagram_content_publish', 
+      'pages_read_engagement', 
+      'instagram_manage_insights'
+  ]});
+}
