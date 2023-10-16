@@ -4,6 +4,8 @@ let TAG_NAME = "cat";
 var business_id = null;
 var tag_id = null;
 
+var get_busniess_id = null;
+
 var medialist = null;
 
 // This is called with the results from from FB.getLoginStatus().
@@ -15,7 +17,7 @@ function statusChangeCallback(response) {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
-        getBusiessID.then(
+        get_busniess_id.then(
           function(error){console.log(error);},
           function(id){console.log("id:"+id);}
         );
@@ -37,6 +39,9 @@ window.fbAsyncInit = function() {
         xfbml            : true,
         version          : 'v18.0'
     });
+
+
+  get_busniess_id = new Promise(getBusiessID);
 
   FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
