@@ -1,6 +1,7 @@
 let PAGE_ID = "139361189263256";
 let TAG_NAME = "cat";
 
+var access_token = "";
 var business_id = null;
 var tag_id = null;
 
@@ -10,12 +11,12 @@ var medialist = null;
 
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
-    console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
+        access_token = response.authResponse.accessToken;
         // Logged into your app and Facebook.
         get_busniess_id.then(
           function(id){console.log(id);},
@@ -70,7 +71,7 @@ function login() {
 }
 
 function getBusiessID(resolve, reject) {
-  FB.api('/'+PAGE_ID+'?fields=instagram_business_account', function(response) {
+  FB.api('/'+PAGE_ID+'?fields=instagram_business_account&access_token='+access_token, function(response) {
       if (response.error != null)
       {
         reject(response.error);
