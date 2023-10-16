@@ -137,7 +137,7 @@ window.fbAsyncInit = function() {
 
       function getMedia(tid) {
         FB.api(tid+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp', function(response) {
-            if (response.error !== null)
+            if (response.error != null)
               reject(response.error.code, response.error.message);
             else
             {
