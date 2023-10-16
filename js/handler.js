@@ -124,7 +124,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 function AddItem (index, link, type)
 {
-    const row_id = (index <= 4) ? "row1" : "row2";
+    const row_id = (index < 4) ? "row1" : "row2";
 
     const newItem = document.createElement('div');
     newItem.classList.add('col-2');
