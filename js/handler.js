@@ -33,6 +33,8 @@ function statusChangeCallback(response) {
           ).then(
             (response) => {
               medialist = response.data;
+
+              console.log(medialist);
               loopList();
             }
           ).catch(
@@ -117,7 +119,7 @@ function getTagID() {
 }
 
 function getMedia() {
-  return getAllPosts('/'+tag_id+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
+  return getAllPosts('/'+tag_id+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,permalink,timestamp');
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
