@@ -124,7 +124,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 function AddItem (index, link, type)
 {
-    const row_id = (index != 0 && index - 4 <= 4) ? "row1" : "row2";
+    const row_id = (index <= 4) ? "row1" : "row2";
 
     const newItem = document.createElement('div');
     newItem.classList.add('col-2');
@@ -154,25 +154,10 @@ function AddItem (index, link, type)
     }
 }
 
-function RemoveLastItem (lastRange)
+function RemoveItems ()
 {
-    if (lastRange >= 4)
-    {
-        document.getElementById("row2").innerHTML = '';
-        
-        if (lastRange - 4 > 0)
-        {
-            const row1 = document.getElementById("row1");
-            for (var i = 0; i < lastRange - 4; i++)
-                row1.removeChild(menu.lastElementChild);
-        }
-    }
-    else
-    {
-        const row2 = document.getElementById("row2");
-        for (var i = 0; i < lastRange - 4; i++)
-            row2.removeChild(menu.lastElementChild);
-    }
+    document.getElementById("row1").innerHTML = '';
+    document.getElementById("row2").innerHTML = '';
 }
 
 var lastList = null;
@@ -189,17 +174,24 @@ const loopList = async () => {
 
   medialist = medialist.splice(0, medialist.length >= 8 ? 8 : medialist.length);
 
-  if (lastList == null)
+  if (lastList != null)
   {
-    for (var i = 0; i < medialist.length; i++)
-      AddItem(i, medialist[i].media_url, medialist[i].type);
+    let intersection = medialist.filter(x => lastList.includes(x));
+
+    if (intersection.length <= 0)
+    {
+      RemoveItems ();
+      for (var i = 0; i < medialist.length; i++)
+        AddItem(i, medialist[i].media_url, medialist[i].type);
+    }
   }
   else
   {
-
+    for (var i = 0; i < medialist.length; i++)
+        AddItem(i, medialist[i].media_url, medialist[i].type);
   }
 
-  console.log(medialist);
+  // console.log(medialist);
 
   lastList = medialist;
 
