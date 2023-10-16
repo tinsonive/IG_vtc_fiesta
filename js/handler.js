@@ -119,7 +119,7 @@ function getTagID() {
 }
 
 function getMedia() {
-  return getAllPosts('/'+tag_id+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,permalink,timestamp');
+  return getAllPosts('/'+tag_id+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -170,7 +170,7 @@ function RemoveLastItem (lastRange)
 
 const loopList = async () => {
 
-  medialist = medialist.filter(item => (item.media_type != "CAROUSEL_ALBUM"));
+  medialist = medialist.filter(item => (!!item.media_url));
 
   medialist.sort(function(a, b){
       if (a.timestamp < b.timestamp) {return -1;}
