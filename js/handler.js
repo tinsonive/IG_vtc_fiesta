@@ -1,16 +1,8 @@
 let PAGE_ID = "139361189263256";
 let TAG_NAME = "cat";
 
-var onInitCompleted = null;
-
 var business_id = null;
 var tag_id = null;
-var isInit = false;
-
-var login = null;
-var get_busniess_id = null;
-var get_tag_id = null;
-var get_media_by_tag = null;
 
 var medialist = null;
 
