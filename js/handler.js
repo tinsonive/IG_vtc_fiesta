@@ -33,8 +33,6 @@ function statusChangeCallback(response) {
           ).then(
             (response) => {
               medialist = response.data;
-
-              console.log(medialist);
               loopList();
             }
           ).catch(
@@ -135,7 +133,7 @@ function AddItem (index, link, type)
 
     if (type == "IMAGE")
     {
-        newhtml = '<img class="img-responsive" src="'+link+'">';
+        newhtml = '<img width="25%" height="50%" class="img-responsive" src="'+link+'">';
     }
     else if (type == "VIDEO")
     {
@@ -143,8 +141,18 @@ function AddItem (index, link, type)
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video>';
     }
+  
+    newItem.innerHTML = newhtml;
+    var children = document.getElementById(row_id).childNodes;
 
-    document.getElementById(row_id).appendChild(newItem).innerHTML = newhtml;
+    if (children.length > 0)
+    {
+      document.getElementById(row_id).insertBefore(newItem, children[0]);
+    }
+    else
+    {
+      document.getElementById(row_id).appendChild(newItem);
+    }
 }
 
 function RemoveLastItem (lastRange)
@@ -175,8 +183,8 @@ const loopList = async () => {
   medialist = medialist.filter(item => (!!item.media_url));
 
   medialist.sort(function(a, b){
-      if (a.timestamp < b.timestamp) {return 1;}
-      if (a.timestamp > b.timestamp) {return -1;}
+      if (a.timestamp < b.timestamp) {return -1;}
+      if (a.timestamp > b.timestamp) {return 1;}
       return 0;
   });
 
