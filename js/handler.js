@@ -5,6 +5,7 @@ var access_token = "";
 var business_id = null;
 var tag_id = null;
 
+var get_user_name = null;
 var get_busniess_id = null;
 
 var medialist = null;
@@ -19,7 +20,7 @@ function statusChangeCallback(response) {
         access_token = response.authResponse.accessToken;
         console.log(access_token);
         // Logged into your app and Facebook.
-        get_busniess_id.then(
+        get_user_name.then(
           function(id){console.log(id);},
           function(error){console.log(error);}
         );
@@ -43,6 +44,7 @@ window.fbAsyncInit = function() {
     });
 
   get_busniess_id = new Promise(getBusiessID);
+  get_user_name = new Promise(getUserName);
 
   FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
@@ -71,8 +73,21 @@ function login() {
   ]});
 }
 
+function getUserName(resolve, reject) {
+  FB.api('/me', function(response) {
+      if (response.error != null)
+      {
+        reject(response.error);
+      }
+      else
+      {
+        resolve(response.name);
+      }
+  });
+}
+
 function getBusiessID(resolve, reject) {
-  FB.api('/'+PAGE_ID+'?fields=instagram_business_account&access_token='+access_token, function(response) {
+  FB.api('/'+PAGE_ID+'?fields=instagram_business_account', function(response) {
       if (response.error != null)
       {
         reject(response.error);
