@@ -178,6 +178,8 @@ const loopList = async () => {
       return 0;
   });
 
+  medialist = medialist.splice(0, medialist.length >= 8 ? 8 : medialist.length);
+
   console.log(medialist);
 
   // wait for 20000 in launch
