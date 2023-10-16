@@ -168,19 +168,31 @@ function RemoveLastItem (lastRange)
     }
 }
 
+var lastList = null;
+
 const loopList = async () => {
 
   medialist = medialist.filter(item => (!!item.media_url));
 
   medialist.sort(function(a, b){
-      if (a.timestamp < b.timestamp) {return -1;}
-      if (a.timestamp > b.timestamp) {return 1;}
+      if (a.timestamp < b.timestamp) {return 1;}
+      if (a.timestamp > b.timestamp) {return -1;}
       return 0;
   });
 
   medialist = medialist.splice(0, medialist.length >= 8 ? 8 : medialist.length);
 
-  console.log(medialist);
+  if (lastList == null)
+  {
+    for (var i = 0; i < medialist.length; i++)
+      AddItem(i, medialist[i].media_url, medialist[i].type);
+  }
+  else
+  {
+
+  }
+
+  lastList = medialist;
 
   // wait for 20000 in launch
   await delay(5000);
