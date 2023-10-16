@@ -24,7 +24,7 @@ function statusChangeCallback(response) {
           .then(
             (name) => {
               console.log(name);
-              return getBusiessID
+              return getBusiessID();
             }
           ).then(
             (id) => {
