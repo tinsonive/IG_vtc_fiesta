@@ -137,7 +137,7 @@ function AddItem (index, link, type)
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<video loop width="100%" height="100%">'+
+        newhtml = '<video loop width="25%" height="50%">'+
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video>';
     }
@@ -175,7 +175,7 @@ const loopList = async () => {
       if (a.timestamp > b.timestamp) {return 1;}
       return 0;
   });
-  
+
   console.log(medialist);
 
   // wait for 20000 in launch
