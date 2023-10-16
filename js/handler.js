@@ -33,6 +33,7 @@ function statusChangeCallback(response) {
           ).then(
             (response) => {
               medialist = response.data;
+              console.log(medialist);
               loopList();
             }
           ).catch(
