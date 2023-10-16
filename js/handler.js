@@ -124,7 +124,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 function AddItem (index, link, type)
 {
-    const row_id = (index != 0 && index % 4) ? "row1" : "row2";
+    const row_id = (index != 0 && index - 4 <= 4) ? "row1" : "row2";
 
     const newItem = document.createElement('div');
     newItem.classList.add('col-2');
@@ -142,16 +142,15 @@ function AddItem (index, link, type)
                     '</video>';
     }
   
-    newItem.innerHTML = newhtml;
     var children = document.getElementById(row_id).childNodes;
 
     if (children.length > 0)
     {
-      document.getElementById(row_id).insertBefore(newItem, children[0]);
+      document.getElementById(row_id).insertBefore(newItem, children[0]).innerHTML = newhtml;
     }
     else
     {
-      document.getElementById(row_id).appendChild(newItem);
+      document.getElementById(row_id).appendChild(newItem).innerHTML = newhtml;;
     }
 }
 
