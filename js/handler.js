@@ -99,7 +99,7 @@ function getAllPosts(uri) {
   });
 }
 
-function getUserName(resolve, reject) {
+function getUserName() {
   return getAllPosts('/me');
 }
 
@@ -107,25 +107,10 @@ function getBusiessID() {
   return getAllPosts('/'+PAGE_ID+'?fields=instagram_business_account');
 }
 
-function getTagID(resolve, reject) {
-  FB.api('ig_hashtag_search?user_id='+business_id+'&q='+TAG_NAME, function(response) {
-      if (response.error != null)
-          reject(response.error);
-      else
-      {
-          tag_id = response.data[0].id;
-          resolve(tag_id);
-      }
-  });
+function getTagID() {
+  return getAllPosts('/ig_hashtag_search?user_id='+business_id+'&q='+TAG_NAME);
 }
 
-function getMedia(resolve, reject) {
-  FB.api(tid+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp', function(response) {
-      if (response.error != null)
-          reject(response.error);
-      else
-      {
-          resolve(response.data);
-      }
-  });
+function getMedia() {
+  return getAllPosts('/'+tag_id+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
 }
