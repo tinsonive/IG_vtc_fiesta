@@ -17,10 +17,10 @@ function statusChangeCallback(response) {
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
-        access_token = response.authResponse.accessToken;
-        console.log(access_token);
+        // access_token = response.authResponse.accessToken;
+        // console.log(access_token);
         // Logged into your app and Facebook.
-        get_user_name.then(
+        getBusiessID(
           function(id){console.log(id);},
           function(error){console.log(error);}
         );
