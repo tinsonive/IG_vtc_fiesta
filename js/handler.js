@@ -188,7 +188,7 @@ const loopList = async () => {
   else
   {
     for (var i = 0; i < medialist.length; i++)
-        AddItem(i, medialist[i].media_url, medialist[i].type);
+        AddItem(i, medialist[i].media_url, medialist[i].media_type);
   }
 
   // console.log(medialist);
