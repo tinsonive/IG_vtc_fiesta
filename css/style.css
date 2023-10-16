@@ -1,4 +1,10 @@
+.container-fluid {
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .row {
-    height:80%;
+    height:50%;
     overflow: hidden;
 }
