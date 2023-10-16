@@ -34,7 +34,7 @@
             
             for (var i = 0; i < newList.length >= 8 ? 8 : newList.length; i++)
             {
-
+                AddItem(i, newList[i].media_url, newList[i].media_type);
             }
 
             currentList = newList;
@@ -47,10 +47,20 @@
             const newItem = document.createElement('div');
             newItem.classList.add('col-2');
 
-            const newMedia = document.createElement('div');
-            newItem.classList.add('col-2');
+            var newhtml = "";
 
-            document.getElementById(row_id).appendChild(newItem).appendChild();
+            if (type == "IMAGE")
+            {
+                newhtml = '<img class="img-responsive" src="'+link+'">';
+            }
+            else if (type == "VIDEO")
+            {
+                newhtml = '<video loop width="100%" height="100%">'+
+                            '<source src="'+link+'" type="video/mp4">'+
+                            '</video>';
+            }
+
+            document.getElementById(row_id).appendChild(newItem).innerHTML = newhtml;
         }
 
         function RemoveLastItem (lastRange)
@@ -87,8 +97,13 @@
 
                 if (medialist != null)
                 {
-                    newList = medialist.filter((item) => !newList.includes(item));
+                    const comingList = medialist.filter((item) => !newList.includes(item));
 
+                    for (var i = 0; i < comingList.length >= 8 ? 8 : comingList.length; i++)
+                    {
+                        AddItem(i, comingList[i].media_url, comingList[i].media_type);
+                    }
+                    
                     RemoveLastItem(newList.length);
                 }
 
