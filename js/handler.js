@@ -82,6 +82,7 @@ window.fbAsyncInit = function() {
       }
 
       FB.api('/'+PAGE_ID+'?fields=instagram_business_account', function(response) {
+          console.log("get_busniess_id:\n"+response);
           if (response.error != null)
             reject(response.error.code, response.error.message);
           else
@@ -108,6 +109,7 @@ window.fbAsyncInit = function() {
 
       function getTagID(bid) {
         FB.api('ig_hashtag_search?user_id='+bid+'&q='+TAG_NAME, function(response) {
+            console.log("getTagID:\n"+response);
             if (response.error != null)
               reject(response.error.code, response.error.message);
             else
@@ -133,6 +135,7 @@ window.fbAsyncInit = function() {
 
       function getMedia(tid) {
         FB.api(tid+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp', function(response) {
+            console.log("getMedia:\n"+response);
             if (response.error != null)
               reject(response.error.code, response.error.message);
             else
