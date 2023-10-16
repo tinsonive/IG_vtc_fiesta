@@ -25,9 +25,20 @@ function statusChangeCallback(response) {
         // Logged into your app and Facebook.
         
     } else {
-        
-      
+      login();
     }
+}
+
+function login() {
+  FB.login(function(response) {
+      console.log(response);
+  },{scope: [
+      'pages_show_list', 
+      'instagram_basic', 
+      'instagram_content_publish', 
+      'pages_read_engagement', 
+      'instagram_manage_insights'
+  ]});
 }
 
 function checkLoginState() {
