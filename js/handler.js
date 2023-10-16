@@ -26,10 +26,10 @@ function statusChangeCallback(response) {
             function(code, msg) { console.log(msg); }
         );
     } else {
-        login.then(
-            function(response) { checkLoginState(); },
-            function(code, msg) { console.log(msg); }
-        );
+        // login.then(
+        //     function(response) { checkLoginState(); },
+        //     function(code, msg) { console.log(msg); }
+        // );
     }
 }
 
