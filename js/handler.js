@@ -49,10 +49,6 @@ window.fbAsyncInit = function() {
         version          : 'v18.0'
     });
 
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });
-
     login = new Promise(function(resolve, reject)
         {
             FB.login(function(response) {
@@ -147,6 +143,11 @@ window.fbAsyncInit = function() {
       }
     }
   ); 
+
+  FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+  });
+
 };
 
 // Load the SDK asynchronously
