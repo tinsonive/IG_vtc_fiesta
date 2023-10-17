@@ -186,13 +186,13 @@ const loopList = async () => {
 
   if (lastList != null)
   {
-    let intersection = medialist.filter(x => lastList.includes(x));
+    let intersection = medialist.filter(x => !lastList.includes(x));
 
-    if (intersection.length <= 0)
+    if (intersection.length > 0)
     {
       RemoveItems (intersection.length);
-      for (var i = 0; i < medialist.length; i++)
-        AddItem(medialist[i].media_url, medialist[i].type);
+      for (var i = 0; i < intersection.length; i++)
+        AddItem(intersection[i].media_url, intersection[i].type);
 
       PlayAllVideo ();
     }
