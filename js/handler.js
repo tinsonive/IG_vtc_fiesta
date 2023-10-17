@@ -189,12 +189,16 @@ const loopList = async () => {
       RemoveItems ();
       for (var i = 0; i < medialist.length; i++)
         AddItem(i, medialist[i].media_url, medialist[i].type);
+
+      PlayAllVideo ();
     }
   }
   else
   {
     for (var i = 0; i < medialist.length; i++)
         AddItem(i, medialist[i].media_url, medialist[i].media_type);
+
+    PlayAllVideo ();
   }
 
   // console.log(medialist);
