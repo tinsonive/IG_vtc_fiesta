@@ -188,6 +188,8 @@ const loopList = async () => {
   {
     let intersection = medialist.filter(x => !lastList.includes(x));
 
+    console.log(intersection);
+
     if (intersection.length > 0)
     {
       RemoveItems (intersection.length);
