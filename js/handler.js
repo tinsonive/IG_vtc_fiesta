@@ -9,6 +9,12 @@ var get_busniess_id = null;
 
 var medialist = null;
 
+Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
+  get: function(){
+      return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
+  }
+})
+
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
     // The response object is returned with a status field that lets the
@@ -137,7 +143,7 @@ function AddItem (index, link, type)
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<div class="limit"><video loop height="100%">'+
+        newhtml = '<div class="limit"><video loop muted playsinline height="100%">'+
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video></div>';
     }
@@ -200,3 +206,32 @@ const loopList = async () => {
 
   getMedia().then((response)=>{loopList();});
 };
+
+function PlayAllVideo ()
+{
+  // Get all videos.
+  var videos = document.querySelectorAll('video');
+
+  // Create a promise to wait all videos to be loaded at the same time.
+  // When all of the videos are ready, call resolve().
+  var promise = new Promise(function(resolve) {
+    var loaded = 0;
+
+    videos.forEach(function(v) {
+      v.addEventListener('loadedmetadata', function() {
+        loaded++;
+
+        if (loaded === videos.length) {
+          resolve();
+        }
+      });
+    });
+  });
+
+  // Play all videos one by one only when all videos are ready to be played.
+  promise.then(function() {
+    videos.forEach(function(v) {
+      if (!v.playing) v.play();
+    });
+  });
+}
