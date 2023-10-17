@@ -130,7 +130,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 function AddItem (index, link, type)
 {
-    const row_id = (index < 4) ? "row1" : "row2";
+    const row_id = "row";
 
     const newItem = document.createElement('div');
     newItem.classList.add("col-3", "px-0");
@@ -162,8 +162,7 @@ function AddItem (index, link, type)
 
 function RemoveItems ()
 {
-    document.getElementById("row1").innerHTML = '';
-    document.getElementById("row2").innerHTML = '';
+    document.getElementById("row").innerHTML = '';
 }
 
 var lastList = null;
