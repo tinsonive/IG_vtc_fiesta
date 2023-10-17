@@ -5,28 +5,24 @@
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     
     <link href="css/style.css" rel="stylesheet">
+
+    <script>
+        function disableScroll() { 
+            scrollTop = window.pageYOffset || document.documentElement.scrollTop; 
+            scrollLeft = window.pageXOffset || document.documentElement.scrollLeft, 
+            window.onscroll = function() { 
+                window.scrollTo(scrollLeft, scrollTop); 
+            }; 
+        }
+        
+        window.onload = disableScroll;
+    </script>
 </head>
 <body style="background-color: black;">
     <div class="container-fluid">
         <div class="row" id="row">
         </div>
     </div>
-    <script src="js/handler.js">
-        function disableScroll() { 
-        // Get the current page scroll position 
-            scrollTop = 
-            window.pageYOffset || document.documentElement.scrollTop; 
-            scrollLeft = 
-            window.pageXOffset || document.documentElement.scrollLeft, 
-        
-            // if any scroll is attempted, 
-            // set this to the previous value 
-            window.onscroll = function() { 
-                window.scrollTo(scrollLeft, scrollTop); 
-            }; 
-        }
-        
-        disableScroll();
-    </script>
+    <script src="js/handler.js"></script>
 </body>
 </html>
