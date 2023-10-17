@@ -1,5 +1,4 @@
 let PAGE_ID = "139361189263256";
-let TAG_NAME = "cat";
 
 var business_id = null;
 var tag_id = null;
@@ -8,6 +7,9 @@ var get_user_name = null;
 var get_busniess_id = null;
 
 var medialist = null;
+
+//Default searching tag name, can be replaced by ?q=
+var search_tag = "itsarah";
 
 Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
   get: function(){
@@ -58,12 +60,18 @@ function checkLoginState() {
 }
 
 window.fbAsyncInit = function() {
-    FB.init({
-        appId            : '1377261053219740',
-        cookie           : true,
-        xfbml            : true,
-        version          : 'v18.0'
-    });
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  if (urlParams.has('q'))
+    search_tag = urlParams.get('q');
+
+  FB.init({
+      appId            : '1377261053219740',
+      cookie           : true,
+      xfbml            : true,
+      version          : 'v18.0'
+  });
 
   get_busniess_id = new Promise(getBusiessID);
   get_user_name = new Promise(getUserName);
@@ -119,7 +127,7 @@ function getBusiessID() {
 }
 
 function getTagID() {
-  return getAllPosts('/ig_hashtag_search?user_id='+business_id+'&q='+TAG_NAME);
+  return getAllPosts('/ig_hashtag_search?user_id='+business_id+'&q='+search_tag);
 }
 
 function getMedia() {
@@ -207,8 +215,6 @@ const loopList = async () => {
     PlayAllVideo ();
   }
 
-  // console.log(medialist);
-
   lastList = medialist;
 
   // wait for 20000 in launch
@@ -224,8 +230,6 @@ function PlayAllVideo ()
 {
   // Get all videos.
   var videos = document.querySelectorAll('video');
-
-  console.log(videos);
 
   // Create a promise to wait all videos to be loaded at the same time.
   // When all of the videos are ready, call resolve().
