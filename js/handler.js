@@ -133,13 +133,13 @@ function AddItem (index, link, type)
 
     if (type == "IMAGE")
     {
-        newhtml = '<img height="100%" class="img-responsive" src="'+link+'">';
+        newhtml = '<div class="limit"><img height="100%" class="img-responsive" src="'+link+'"></div>';
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<video loop height="100%">'+
+        newhtml = '<div class="limit"><video loop height="100%">'+
                     '<source src="'+link+'" type="video/mp4">'+
-                    '</video>';
+                    '</video></div>';
     }
   
     var children = document.getElementById(row_id).childNodes;
