@@ -198,7 +198,7 @@ const loopList = async () => {
 
   if (lastList != null)
   {
-    let intersection = medialist.filter(x => !lastList.includes(x));
+    let intersection = medialist.filter(x => lastList.includes(x));
 
     console.log(intersection);
 
