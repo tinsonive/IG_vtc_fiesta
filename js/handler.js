@@ -128,7 +128,7 @@ function getMedia() {
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-function AddItem (index, link, type)
+function AddItem (link, type)
 {
     const row_id = "row";
 
@@ -160,9 +160,14 @@ function AddItem (index, link, type)
     }
 }
 
-function RemoveItems ()
+function RemoveItems (length)
 {
-    document.getElementById("row").innerHTML = '';
+   var parent = document.getElementById("row");
+
+   for (var i = 0; i < length; i++)
+   {
+      parent.removeChild(parent.lastChild);
+   }
 }
 
 var lastList = null;
@@ -185,9 +190,9 @@ const loopList = async () => {
 
     if (intersection.length <= 0)
     {
-      RemoveItems ();
+      RemoveItems (intersection.length);
       for (var i = 0; i < medialist.length; i++)
-        AddItem(i, medialist[i].media_url, medialist[i].type);
+        AddItem(medialist[i].media_url, medialist[i].type);
 
       PlayAllVideo ();
     }
@@ -195,7 +200,7 @@ const loopList = async () => {
   else
   {
     for (var i = 0; i < medialist.length; i++)
-        AddItem(i, medialist[i].media_url, medialist[i].media_type);
+        AddItem(medialist[i].media_url, medialist[i].media_type);
 
     PlayAllVideo ();
   }
