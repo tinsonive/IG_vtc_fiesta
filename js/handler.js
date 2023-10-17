@@ -216,6 +216,8 @@ function PlayAllVideo ()
   // Get all videos.
   var videos = document.querySelectorAll('video');
 
+  console.log(videos);
+
   // Create a promise to wait all videos to be loaded at the same time.
   // When all of the videos are ready, call resolve().
   var promise = new Promise(function(resolve) {
