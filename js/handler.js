@@ -194,7 +194,7 @@ const loopList = async () => {
     {
       RemoveItems (intersection.length);
       for (var i = 0; i < intersection.length; i++)
-        AddItem(intersection[i].media_url, intersection[i].type);
+        AddItem(intersection[i].media_url, intersection[i].media_type);
 
       PlayAllVideo ();
     }
