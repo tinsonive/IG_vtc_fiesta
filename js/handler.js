@@ -208,7 +208,10 @@ const loopList = async () => {
   // wait for 20000 in launch
   await delay(20000);
 
-  getMedia().then((response)=>{loopList();});
+  getMedia().then((response)=>{
+    medialist = response.data;
+    loopList();
+  });
 };
 
 function PlayAllVideo ()
