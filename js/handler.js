@@ -10,6 +10,8 @@ var medialist = null;
 
 //Default searching tag name, can be replaced by ?q=
 var search_tag = "itsarah";
+//Default refresh time is 1 min. can be replaced be ?refresh
+var refresh_time = 60000; 
 
 Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
   get: function(){
@@ -65,6 +67,8 @@ window.fbAsyncInit = function() {
   const urlParams = new URLSearchParams(queryString);
   if (urlParams.has('q'))
     search_tag = urlParams.get('q');
+  if (urlParams.has('refresh'))
+    refresh_time = urlParams.get('refresh');
 
   FB.init({
       appId            : '1377261053219740',
@@ -216,9 +220,8 @@ const loopList = async () => {
   }
 
   lastList = medialist;
-
-  // wait for 20000 in launch
-  await delay(20000);
+  
+  await delay(refresh_time);
 
   getMedia().then((response)=>{
     medialist = response.data;
