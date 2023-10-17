@@ -147,12 +147,12 @@ function AddItem (index, link, type)
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video></div>';
     }
-  
-    var children = document.getElementById(row_id).childNodes;
+    
+    var parent = document.getElementById(row_id);
 
-    if (children.length > 0)
+    if (parent.children.length > 0)
     {
-      document.getElementById(row_id).insertBefore(newItem, children[0]).innerHTML = newhtml;
+      document.getElementById(row_id).insertBefore(newItem, parent.children[0]).innerHTML = newhtml;
     }
     else
     {
