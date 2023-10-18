@@ -34,5 +34,5 @@
 /* animate new box */
 .new-media {
     animation: append-animate .5s ease-out;
-    animation-delay: 1s;
+    /* animation-delay: 1s; */
 }
