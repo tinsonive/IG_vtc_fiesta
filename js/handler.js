@@ -240,7 +240,7 @@ function OnVideoLoaded()
   videos.forEach(function(v) {
     v.addEventListener('loadedmetadata', function() {
       v.classList.add('new-media');
-      v.classList.remove("isWaiting");
+      v.classList.remove("isVideoWaiting");
       v.removeAttribute('hidden');
       v.play();
     });
@@ -258,7 +258,7 @@ function OnImageLoaded ()
   imgs.forEach(function(i) {
     i.addEventListener('loadedmetadata', function() {
       i.classList.add('new-media');
-      i.classList.remove("isWaiting");
+      i.classList.remove("isImgWaiting");
       i.removeAttribute('hidden');
     });
   });
