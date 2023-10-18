@@ -256,7 +256,7 @@ function OnImageLoaded ()
   // imgs = videos.filter(i => i.classList.contains('new-media'));
 
   imgs.forEach(function(i) {
-    i.addEventListener('loadedmetadata', function() {
+    i.addEventListener('load', function() {
       i.classList.add('new-media');
       i.classList.remove("isImgWaiting");
       i.removeAttribute('hidden');
