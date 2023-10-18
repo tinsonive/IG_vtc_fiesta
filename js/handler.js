@@ -144,11 +144,11 @@ function AddItem (link, type)
 
     if (type == "IMAGE")
     {
-        newhtml = '<div class="limit"><img height="100%" class="img-responsive isImgWaiting" src="'+link+'" hidden></div>';
+        newhtml = '<div class="limit"><img class="img-responsive isImgWaiting d-block mx-auto " src="'+link+'" hidden></div>';
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<div class="limit"><video loop muted playsinline height="100%" class="isVideoWaiting" hidden>'+
+        newhtml = '<div class="limit"><video loop muted playsinline class="isVideoWaiting" hidden>'+
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video></div>';
     }
