@@ -144,11 +144,11 @@ function AddItem (link, type)
 
     if (type == "IMAGE")
     {
-        newhtml = '<div class="limit"><img height="100%" class="img-responsive" src="'+link+'" hidden></div>';
+        newhtml = '<div class="limit"><img height="100%" class="img-responsive isWaiting" src="'+link+'" hidden></div>';
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<div class="limit"><video loop muted playsinline height="100%" hidden>'+
+        newhtml = '<div class="limit"><video loop muted playsinline height="100%" class="isWaiting" hidden>'+
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video></div>';
     }
@@ -223,15 +223,25 @@ const loopList = async () => {
   });
 };
 
+var filter = Array.prototype.filter,
+  result   = document.querySelectorAll('div'),
+  filtered = filter.call( result, function( node ) {
+      return !!node.querySelectorAll('span').length;
+  });
+
 function OnVideoLoaded()
 {
-  var videos = document.querySelectorAll('video');
+  var videos = document.querySelectorAll('video .isWaiting');
 
-  videos = videos.filter(v => v.isPlaying);
+  console.log(videos);
+
+  // videos = videos.filter(v => v.isPlaying);
 
   videos.forEach(function(v) {
     v.addEventListener('loadedmetadata', function() {
       v.classList.add('new-media');
+      v.classList.remove("isWaiting");
+      v.removeAttribute('hidden');
       v.play();
     });
   });
@@ -239,13 +249,18 @@ function OnVideoLoaded()
 
 function OnImageLoaded ()
 {
-  var imgs = document.querySelectorAll('img');
+  var imgs = document.querySelectorAll('img .isWaiting');
 
-  imgs = videos.filter(i => i.classList.contains('new-media'));
+  console.log(imgs);
+
+  // imgs = videos.filter(i => i.classList.contains('new-media'));
 
   imgs.forEach(function(i) {
     i.addEventListener('loadedmetadata', function() {
       i.classList.add('new-media');
+      i.classList.remove("isWaiting");
+      i.removeAttribute('hidden');
     });
   });
 }
+
