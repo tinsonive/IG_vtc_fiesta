@@ -233,10 +233,6 @@ function OnVideoLoaded()
 {
   var videos = document.querySelectorAll('.isVideoWaiting');
 
-  console.log(videos);
-
-  // videos = videos.filter(v => v.isPlaying);
-
   videos.forEach(function(v) {
     v.addEventListener('loadedmetadata', function() {
       v.classList.add('new-media');
@@ -250,10 +246,6 @@ function OnVideoLoaded()
 function OnImageLoaded ()
 {
   var imgs = document.querySelectorAll('.isImgWaiting');
-
-  console.log(imgs);
-
-  // imgs = videos.filter(i => i.classList.contains('new-media'));
 
   imgs.forEach(function(i) {
     i.addEventListener('load', function() {
