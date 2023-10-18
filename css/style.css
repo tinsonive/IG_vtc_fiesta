@@ -36,3 +36,7 @@
     animation: append-animate .5s ease-out;
     /* animation-delay: 1s; */
 }
+
+body {
+    overflow: hidden; /* Hide scrollbars */
+}
