@@ -144,11 +144,11 @@ function AddItem (link, type)
 
     if (type == "IMAGE")
     {
-        newhtml = '<div class="limit"><img height="100%" class="img-responsive isWaiting" src="'+link+'" hidden></div>';
+        newhtml = '<div class="limit"><img height="100%" class="img-responsive isImgWaiting" src="'+link+'" hidden></div>';
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<div class="limit"><video loop muted playsinline height="100%" class="isWaiting" hidden>'+
+        newhtml = '<div class="limit"><video loop muted playsinline height="100%" class="isVideoWaiting" hidden>'+
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video></div>';
     }
@@ -231,7 +231,7 @@ var filter = Array.prototype.filter,
 
 function OnVideoLoaded()
 {
-  var videos = document.querySelectorAll('.isWaiting');
+  var videos = document.querySelectorAll('.isVideoWaiting');
 
   console.log(videos);
 
@@ -249,7 +249,7 @@ function OnVideoLoaded()
 
 function OnImageLoaded ()
 {
-  var imgs = document.querySelectorAll('.isWaiting');
+  var imgs = document.querySelectorAll('.isImgWaiting');
 
   console.log(imgs);
 
