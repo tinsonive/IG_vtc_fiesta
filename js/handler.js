@@ -13,7 +13,7 @@ var search_tag = "itsarah";
 //Default refresh time is 1 min. can be replaced be ?refresh
 var refresh_time = 60000; 
 
-Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
+Object.defineProperty(HTMLMediaElement.prototype, 'isPlaying', {
   get: function(){
       return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
   }
@@ -21,14 +21,7 @@ Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
 
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
     if (response.status === 'connected') {
-        // access_token = response.authResponse.accessToken;
-        // console.log(access_token);
-        // Logged into your app and Facebook.
         getBusiessID()
           .then(
             (response) => {
@@ -151,11 +144,11 @@ function AddItem (link, type)
 
     if (type == "IMAGE")
     {
-        newhtml = '<div class="limit"><img height="100%" class="img-responsive new-media" src="'+link+'"></div>';
+        newhtml = '<div class="limit"><img height="100%" class="img-responsive" src="'+link+'"></div>';
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<div class="limit"><video loop muted playsinline height="100%" class="new-media">'+
+        newhtml = '<div class="limit"><video loop muted playsinline height="100%">'+
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video></div>';
     }
@@ -200,16 +193,15 @@ const loopList = async () => {
   {
     let lastIDList = lastList.map(a => a.id);
     let intersection = medialist.filter(x => !lastIDList.includes(x.id));
-
-    console.log(intersection);
-
+    
     if (intersection.length > 0)
     {
       RemoveItems (intersection.length);
       for (var i = 0; i < intersection.length; i++)
         AddItem(intersection[i].media_url, intersection[i].media_type);
 
-      PlayAllVideo ();
+      OnVideoLoaded();
+      OnImageLoaded();
     }
   }
   else
@@ -217,7 +209,8 @@ const loopList = async () => {
     for (var i = 0; i < medialist.length; i++)
         AddItem(medialist[i].media_url, medialist[i].media_type);
 
-    PlayAllVideo ();
+    OnVideoLoaded();
+    OnImageLoaded();
   }
 
   lastList = medialist;
@@ -230,31 +223,29 @@ const loopList = async () => {
   });
 };
 
-function PlayAllVideo ()
+function OnVideoLoaded()
 {
-  // Get all videos.
   var videos = document.querySelectorAll('video');
 
-  // Create a promise to wait all videos to be loaded at the same time.
-  // When all of the videos are ready, call resolve().
-  var promise = new Promise(function(resolve) {
-    var loaded = 0;
+  videos = videos.filter(v => v.isPlaying);
 
-    videos.forEach(function(v) {
-      v.addEventListener('loadedmetadata', function() {
-        loaded++;
-
-        if (loaded === videos.length) {
-          resolve();
-        }
-      });
+  videos.forEach(function(v) {
+    v.addEventListener('loadedmetadata', function() {
+      v.classList.add('new-media');
+      v.play();
     });
   });
+}
 
-  // Play all videos one by one only when all videos are ready to be played.
-  promise.then(function() {
-    videos.forEach(function(v) {
-      if (!v.playing) v.play();
+function OnImageLoaded ()
+{
+  var imgs = document.querySelectorAll('img');
+
+  imgs = videos.filter(i => i.classList.contains('new-media'));
+
+  imgs.forEach(function(i) {
+    i.addEventListener('loadedmetadata', function() {
+      i.classList.add('new-media');
     });
   });
 }
