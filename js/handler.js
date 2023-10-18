@@ -231,7 +231,7 @@ var filter = Array.prototype.filter,
 
 function OnVideoLoaded()
 {
-  var videos = document.getElementsByClassName('isWaiting');
+  var videos = document.querySelectorAll('.isWaiting');
 
   console.log(videos);
 
@@ -249,7 +249,7 @@ function OnVideoLoaded()
 
 function OnImageLoaded ()
 {
-  var imgs = document.getElementsByClassName('isWaiting');
+  var imgs = document.querySelectorAll('.isWaiting');
 
   console.log(imgs);
 
