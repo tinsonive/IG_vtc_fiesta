@@ -19,6 +19,32 @@
 
         // Disable Right Click Menu
         document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Hide Cursor when idle
+        document.addEventListener("DOMContentLoaded", () => {
+            let idleMouseTimer;
+            let forceMouseHide = false;
+
+            document.body.addEventListener("mousemove", () => {
+                if (forceMouseHide) {
+                    return;
+                }
+
+                document.body.style.cursor = "";
+
+                clearTimeout(idleMouseTimer);
+
+                idleMouseTimer = setTimeout(() => {
+                    document.body.style.cursor = "";
+
+                    forceMouseHide = true;
+
+                    setTimeout(() => {
+                        forceMouseHide = false;
+                    }, 2000);
+                }, 1000);
+            });
+        });
     </script>
 </head>
 <body style="background-color: black;">
