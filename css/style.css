@@ -33,8 +33,6 @@
 
 /* animate new box */
 .new-media {
-    opacity: 0;
-    scale: 0;
-    animation: append-animate .3s ease-in;
+    animation: append-animate .5s ease-out;
     animation-delay: 1s;
 }
