@@ -140,30 +140,42 @@ function AddItem (link, type)
     const newItem = document.createElement('div');
     newItem.classList.add("col-3", "px-2", "d-flex", "align-items-center", "justify-content-center", "h-100");
 
-    var newhtml = "";
+    const newCol = document.createElement('div');
+    newCol.classList.add("col", "h-100");
+
+    const newLimit = document.createElement('div');
+    newLimit.classList.add("limit", "d-flex", "justify-content-center", "h-100");
+
+    const newItemBG = document.createElement('div');
+    newItemBG.classList.add("media-bg", "h-100", "d-flex");
+
+    var newMedia = "";
 
     if (type == "IMAGE")
     {
         // newhtml = '<div class="limit d-flex align-items-center justify-content-center h-100"><div class="media-bg d-flex align-items-center"><img class="isImgWaiting" src="'+link+'" hidden></div></div>';
-        newhtml = '<div></div>';
+        newMedia = '<img class="align-self-center" src="'+link+'">';
     }
     else if (type == "VIDEO")
     {
         // newhtml = '<div class="limit"><video loop muted playsinline class="isVideoWaiting" hidden>'+
         //             '<source src="'+link+'" type="video/mp4">'+
         //             '</video></div>';
-        newhtml = '<div></div>';
+        newMedia = '<video loop muted playsinline class=""><source src="'+link+'" type="video/mp4"></video>';
     }
+
+
+    newItem.appendChild(newCol).appendChild(newLimit).appendChild(newItemBG).innerHTML = newMedia;
     
-    var parent = document.getElementById(row_id);
+    const parent = document.getElementById(row_id);
 
     if (parent.children.length > 0)
     {
-      document.getElementById(row_id).insertBefore(newItem, parent.children[0]).innerHTML = newhtml;
+      document.getElementById(row_id).insertBefore(newItem, parent.children[0]);
     }
     else
     {
-      document.getElementById(row_id).appendChild(newItem).innerHTML = newhtml;;
+      document.getElementById(row_id).appendChild(newItem);
     }
 }
 
