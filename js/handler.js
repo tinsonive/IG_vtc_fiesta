@@ -120,7 +120,7 @@ function getAllPosts(uri) {
     recursiveAPICall(uri);
   }).catch(
     (err) => {
-      console.log(err);
+      if (logbug) console.log(err);
     }
   );
 }
