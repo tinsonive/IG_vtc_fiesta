@@ -148,7 +148,7 @@ function AddItem (link, type)
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<div class="limit d-flex align-items-center justify-content-center"><video loop muted playsinline class="isVideoWaiting" hidden>'+
+        newhtml = '<div class="limit"><video loop muted playsinline class="isVideoWaiting" hidden>'+
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video></div>';
     }
