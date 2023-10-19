@@ -144,13 +144,13 @@ function AddItem (link, type)
 
     if (type == "IMAGE")
     {
-        newhtml = '<div class="limit d-flex align-items-center justify-content-center"><div class="img-bg d-flex align-items-center"><img class="isImgWaiting" src="'+link+'" hidden></div></div>';
+        newhtml = '<div class="limit d-flex align-items-center justify-content-center h-100"><div class="media-bg d-flex align-items-center"><img class="isImgWaiting" src="'+link+'" hidden></div></div>';
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<div class="limit"><video loop muted playsinline class="isVideoWaiting" hidden>'+
+        newhtml = '<div class="limit d-flex align-items-center justify-content-center h-100"><div class="media-bg d-flex align-items-center"><video loop muted playsinline class="isVideoWaiting" hidden>'+
                     '<source src="'+link+'" type="video/mp4">'+
-                    '</video></div>';
+                    '</video></div></div>';
     }
     
     var parent = document.getElementById(row_id);
