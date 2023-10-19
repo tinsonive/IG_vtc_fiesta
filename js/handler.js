@@ -148,9 +148,9 @@ function AddItem (link, type)
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<div class="limit d-flex align-items-center justify-content-center h-100"><div class="media-bg d-flex align-items-center"><video loop muted playsinline class="isVideoWaiting" hidden>'+
+        newhtml = '<div class="limit"><video loop muted playsinline class="isVideoWaiting" hidden>'+
                     '<source src="'+link+'" type="video/mp4">'+
-                    '</video></div></div>';
+                    '</video></div>';
     }
     
     var parent = document.getElementById(row_id);
