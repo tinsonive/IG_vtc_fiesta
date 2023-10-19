@@ -65,10 +65,10 @@ window.fbAsyncInit = function() {
   if (urlParams.has('q'))
     search_tag = urlParams.get('q');
   if (urlParams.has('refresh'))
-    refresh_time = parseInt(urlParams.get('refresh'), 60000);
+    refresh_time = urlParams.get('refresh');
   if (urlParams.has('col'))
   { 
-    colshows = parseInt(urlParams.get('col'), 4);
+    colshows = urlParams.get('col');
     colshows = Math.min(Math.max(colshows, 4), 6);
   }
   if (urlParams.has('logbug'))
