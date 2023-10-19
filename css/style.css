@@ -15,7 +15,7 @@
    width: 100%;
 }
 .limit video{
-    /* width: 100%; */
+    width: 100%;
     height: 100%;
 }
 .media-bg {
@@ -38,7 +38,6 @@
 /* animate new box */
 .new-media {
     animation: append-animate .5s ease-out;
-    /* animation-delay: 1s; */
 }
 
 body {
