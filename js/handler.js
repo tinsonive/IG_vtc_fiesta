@@ -9,7 +9,7 @@ var get_busniess_id = null;
 var medialist = null;
 
 //Default searching tag name, can be replaced by ?q=
-var search_tag = "itsarah";
+var search_tag = "vtcskills";
 //Default refresh time is 1 min. can be replaced be ?refresh
 var refresh_time = 60000; 
 //TODO: Set how many column each row (4 ~ 8).
@@ -134,7 +134,7 @@ function getTagID() {
 }
 
 function getMedia() {
-  return getAllPosts('/'+tag_id+'/top_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
+  return getAllPosts('/'+tag_id+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
