@@ -134,7 +134,7 @@ function getTagID() {
 }
 
 function getMedia() {
-  return getAllPosts('/'+tag_id+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
+  return getAllPosts('/'+tag_id+'/top_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
