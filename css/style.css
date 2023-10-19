@@ -1,9 +1,3 @@
-body {
-    background-image: url("Assets/Background/bg.jpg");
-    background-repeat: no-repeat;
-    background-size: auto;
-}
-
 .container-fluid {
     height: 100%;
     padding-left: 0px;
@@ -11,7 +5,7 @@ body {
 }
 
 #row {
-    height:40%;
+    height:44%;
 }
 
 .limit{
