@@ -12,6 +12,10 @@ var medialist = null;
 var search_tag = "itsarah";
 //Default refresh time is 1 min. can be replaced be ?refresh
 var refresh_time = 60000; 
+//TODO: Set how many column each row (4 ~ 8).
+// var col = 4;
+//Set the console debug log enabled by ?logbug=
+var logbug = false;
 
 Object.defineProperty(HTMLMediaElement.prototype, 'isPlaying', {
   get: function(){
@@ -62,6 +66,8 @@ window.fbAsyncInit = function() {
     search_tag = urlParams.get('q');
   if (urlParams.has('refresh'))
     refresh_time = urlParams.get('refresh');
+  if (urlParams.has('logbug'))
+    logbug = urlParams.get('logbug').toLowerCase() == 'true';
 
   FB.init({
       appId            : '1377261053219740',
@@ -153,14 +159,10 @@ function AddItem (link, type)
 
     if (type == "IMAGE")
     {
-        // newhtml = '<div class="limit d-flex align-items-center justify-content-center h-100"><div class="media-bg d-flex align-items-center"><img class="isImgWaiting" src="'+link+'" hidden></div></div>';
         newMedia = '<img class="align-self-center isImgWaiting" src="'+link+'">';
     }
     else if (type == "VIDEO")
     {
-        // newhtml = '<div class="limit"><video loop muted playsinline class="isVideoWaiting" hidden>'+
-        //             '<source src="'+link+'" type="video/mp4">'+
-        //             '</video></div>';
         newMedia = '<video loop muted playsinline class="isVideoWaiting"><source src="'+link+'" type="video/mp4"></video>';
     }
 
@@ -207,6 +209,8 @@ const loopList = async () => {
   {
     let lastIDList = lastList.map(a => a.id);
     let intersection = medialist.filter(x => !lastIDList.includes(x.id));
+
+    if (logbug) console.log(intersection);
     
     if (intersection.length > 0)
     {
