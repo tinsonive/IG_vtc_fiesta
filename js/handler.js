@@ -138,7 +138,7 @@ function AddItem (link, type)
     const row_id = "row";
 
     const newItem = document.createElement('div');
-    newItem.classList.add("col-3", "px-0", "d-flex", "align-items-center", "justify-content-center", "h-100");
+    newItem.classList.add("col-3", "px-2", "d-flex", "align-items-center", "justify-content-center", "h-100");
 
     var newhtml = "";
 
