@@ -63,12 +63,12 @@ window.fbAsyncInit = function() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   if (urlParams.has('q'))
-    search_tag = parseInt(urlParams.get('q'), search_tag);
+    search_tag = urlParams.get('q');
   if (urlParams.has('refresh'))
-    refresh_time = parseInt(urlParams.get('refresh'), refresh_time);
+    refresh_time = parseInt(urlParams.get('refresh'), 60000);
   if (urlParams.has('col'))
   { 
-    colshows = parseInt(urlParams.get('col'), colshows);
+    colshows = parseInt(urlParams.get('col'), 4);
     colshows = Math.min(Math.max(colshows, 4), 6);
   }
   if (urlParams.has('logbug'))
