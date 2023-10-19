@@ -178,7 +178,7 @@ function AddItem (link, type)
     newItem.appendChild(newCol).appendChild(newLimit).appendChild(newItemBG).innerHTML = newMedia;
     
     const parent = document.getElementById(row_id);
-    parent.classList.add("row-col-"+colshows.toString());
+    parent.classList.add("row-cols-"+colshows.toString());
 
     if (parent.children.length > 0)
     {
