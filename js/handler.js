@@ -154,14 +154,14 @@ function AddItem (link, type)
     if (type == "IMAGE")
     {
         // newhtml = '<div class="limit d-flex align-items-center justify-content-center h-100"><div class="media-bg d-flex align-items-center"><img class="isImgWaiting" src="'+link+'" hidden></div></div>';
-        newMedia = '<img class="align-self-center" src="'+link+'">';
+        newMedia = '<img class="align-self-center isImgWaiting" src="'+link+'">';
     }
     else if (type == "VIDEO")
     {
         // newhtml = '<div class="limit"><video loop muted playsinline class="isVideoWaiting" hidden>'+
         //             '<source src="'+link+'" type="video/mp4">'+
         //             '</video></div>';
-        newMedia = '<video loop muted playsinline class=""><source src="'+link+'" type="video/mp4"></video>';
+        newMedia = '<video loop muted playsinline class="isVideoWaiting"><source src="'+link+'" type="video/mp4"></video>';
     }
 
 
