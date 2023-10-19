@@ -9,7 +9,7 @@ var get_busniess_id = null;
 var medialist = null;
 
 //Default searching tag name, can be replaced by ?q=
-var search_tag = "vtcskills";
+var search_tag = "itdsarah";
 //Default refresh time is 1 min. can be replaced be ?refresh
 var refresh_time = 60000; 
 //TODO: Set how many column each row (4 ~ 6).
