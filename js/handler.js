@@ -138,17 +138,17 @@ function AddItem (link, type)
     const row_id = "row";
 
     const newItem = document.createElement('div');
-    newItem.classList.add("col-3", "px-0");
+    newItem.classList.add("col-3", "px-0", "d-flex");
 
     var newhtml = "";
 
     if (type == "IMAGE")
     {
-        newhtml = '<div class="limit"><div class="img-bg"><img class="img-responsive isImgWaiting d-block mx-auto" src="'+link+'" hidden></div></div>';
+        newhtml = '<div class="limit d-flex align-items-center justify-content-center"><div class="img-bg d-flex align-items-center"><img class="isImgWaiting" src="'+link+'" hidden></div></div>';
     }
     else if (type == "VIDEO")
     {
-        newhtml = '<div class="limit"><video loop muted playsinline class="isVideoWaiting" hidden>'+
+        newhtml = '<div class="limit d-flex align-items-center justify-content-center"><video loop muted playsinline class="isVideoWaiting" hidden>'+
                     '<source src="'+link+'" type="video/mp4">'+
                     '</video></div>';
     }
