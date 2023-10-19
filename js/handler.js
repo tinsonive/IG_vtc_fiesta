@@ -12,8 +12,8 @@ var medialist = null;
 var search_tag = "vtcskills";
 //Default refresh time is 1 min. can be replaced be ?refresh
 var refresh_time = 60000; 
-//TODO: Set how many column each row (4 ~ 8).
-// var col = 4;
+//TODO: Set how many column each row (4 ~ 6).
+var colshows = 4;
 //Set the console debug log enabled by ?logbug=
 var logbug = false;
 
@@ -63,9 +63,14 @@ window.fbAsyncInit = function() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   if (urlParams.has('q'))
-    search_tag = urlParams.get('q');
+    search_tag = parseInt(urlParams.get('q'), search_tag);
   if (urlParams.has('refresh'))
-    refresh_time = urlParams.get('refresh');
+    refresh_time = parseInt(urlParams.get('refresh'), refresh_time);
+  if (urlParams.has('col'))
+  { 
+    colshows = parseInt(urlParams.get('col'), colshows);
+    colshows = Math.min(Math.max(colshows, 4), 6);
+  }
   if (urlParams.has('logbug'))
     logbug = urlParams.get('logbug').toLowerCase() == 'true';
 
@@ -148,7 +153,7 @@ function AddItem (link, type)
     const row_id = "row";
 
     const newItem = document.createElement('div');
-    newItem.classList.add("col-3", "px-2", "py-2", "d-flex", "align-items-center", "justify-content-center", "h-100");
+    newItem.classList.add("col", "px-2", "py-2", "d-flex", "align-items-center", "justify-content-center", "h-100");
 
     const newCol = document.createElement('div');
     newCol.classList.add("col", "h-100");
@@ -170,10 +175,10 @@ function AddItem (link, type)
         newMedia = '<video loop muted playsinline class="isVideoWaiting"><source src="'+link+'" type="video/mp4"></video>';
     }
 
-
     newItem.appendChild(newCol).appendChild(newLimit).appendChild(newItemBG).innerHTML = newMedia;
     
     const parent = document.getElementById(row_id);
+    parent.classList.add("row-col-"+colshows.toString());
 
     if (parent.children.length > 0)
     {
@@ -207,7 +212,7 @@ const loopList = async () => {
       return 0;
   });
 
-  medialist = medialist.splice(0, medialist.length >= 8 ? 8 : medialist.length);
+  medialist = medialist.splice(0, medialist.length >= colshows * 2 ? colshows * 2 : medialist.length);
 
   if (lastList != null)
   {
