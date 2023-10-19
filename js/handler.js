@@ -118,7 +118,11 @@ function getAllPosts(uri) {
       });
     }
     recursiveAPICall(uri);
-  });
+  }).catch(
+    (err) => {
+      console.log(err);
+    }
+  );
 }
 
 function getUserName() {
