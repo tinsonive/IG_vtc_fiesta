@@ -4,7 +4,7 @@
 
 Go to https://fiesta.ga-jam.com
 
-#### URL parameter:<br>
+#### URL parameter:
 q : The hashtag name to query, default is "itdsarah".<br>
 refresh : Set the refresh time (in ms) to request the new media content, default is 60000.<br>
 col : Set the item number in each row, default is 4.<br>
