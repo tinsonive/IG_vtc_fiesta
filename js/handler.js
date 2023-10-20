@@ -139,19 +139,27 @@ function getAllPosts(uri) {
 }
 
 function getUserName() {
-  return getAllPosts('/me');
+  const api = '/me';
+  if (logbug) console.log(api);
+  return getAllPosts(api);
 }
 
 function getBusiessID() {
-  return getAllPosts('/'+PAGE_ID+'?fields=instagram_business_account');
+  const api = '/'+PAGE_ID+'?fields=instagram_business_account';
+  if (logbug) console.log(api);
+  return getAllPosts(api);
 }
 
 function getTagID() {
-  return getAllPosts('/ig_hashtag_search?user_id='+business_id+'&q='+search_tag);
+  const api = '/ig_hashtag_search?user_id='+business_id+'&q='+search_tag;
+  if (logbug) console.log(api);
+  return getAllPosts(api);
 }
 
 function getMedia() {
-  return getAllPosts('/'+tag_id+'/'+searchType+'_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
+  const api = '/'+tag_id+'/'+searchType+'_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp';
+  if (logbug) console.log(api);
+  return getAllPosts(api);
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
