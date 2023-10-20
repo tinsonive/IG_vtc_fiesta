@@ -10,10 +10,10 @@ refresh : Set the refresh time (in ms) to request the new media content, default
 col : Set the item number in each row, default is 4.<br>
 search : Set the searching method for searching tagged media recently or top, default is recent.
 
-| Param  | Description                                                                                                   |
-|--------|---------------------------------------------------------------------------------------------------------------|
-| recent | Get a list of the most recently published photo and video IG Media objects published with a specific hashtag. |
-| top    | Returns the most popular photo and video IG Media objects that have been tagged with the hashtag.             |
+| Param  | Description                                                                                                                     |
+|--------|---------------------------------------------------------------------------------------------------------------------------------|
+| recent | Get a list of the most recently (within 24 hours) published photo and video IG Media objects published with a specific hashtag. |
+| top    | Returns the most popular photo and video IG Media objects that have been tagged with the hashtag.                               |
 
 
 logbug : Set the debug log to true will enable the debug log, default is false. 
