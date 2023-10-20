@@ -12,8 +12,10 @@ var medialist = null;
 var search_tag = "itdsarah";
 //Default refresh time is 1 min. can be replaced be ?refresh
 var refresh_time = 60000; 
-//TODO: Set how many column each row (4 ~ 6).
+//Set how many column each row (4 ~ 6).
 var colshows = 4;
+//Set search tag media type [recent / top].
+var searchType = "recent";
 //Set the console debug log enabled by ?logbug=
 var logbug = false;
 
@@ -70,6 +72,12 @@ window.fbAsyncInit = function() {
   { 
     colshows = urlParams.get('col');
     colshows = Math.min(Math.max(colshows, 4), 6);
+  }
+  if (urlParams.has('search'))
+  {
+    searchType = urlParams.get('search').toLowerCase();
+    if (searchType != 'recent' && searchType != 'top')
+      searchType = 'recent';
   }
   if (urlParams.has('logbug'))
     logbug = urlParams.get('logbug').toLowerCase() == 'true';
@@ -143,7 +151,7 @@ function getTagID() {
 }
 
 function getMedia() {
-  return getAllPosts('/'+tag_id+'/recent_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
+  return getAllPosts('/'+tag_id+'/'+searchType+'_media?user_id='+business_id+'&fields=id,media_type,media_url,timestamp');
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
