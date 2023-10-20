@@ -19,7 +19,7 @@
     height: 100%;
 }
 .media-bg {
-    background-color: white;    
+    background: radial-gradient(circle, rgba(244,244,244,1) 80%, rgba(235,235,235,1) 100%);    
     height: 100%;
     width: 56%
 }

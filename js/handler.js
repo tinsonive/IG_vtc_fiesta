@@ -239,7 +239,13 @@ const loopList = async () => {
     
     if (intersection.length > 0)
     {
-      RemoveItems (intersection.length);
+      if (intersection.length + lastIDList.length >= colshows * 2)
+      {
+          const tobeDelNum = Math.max((intersection.length + lastIDList.length) - (colshows * 2), 0);
+
+          RemoveItems (tobeDelNum);
+      }
+
       for (var i = 0; i < intersection.length; i++)
         AddItem(intersection[i].media_url, intersection[i].media_type);
 
