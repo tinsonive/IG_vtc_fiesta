@@ -8,7 +8,7 @@ Go to https://fiesta.ga-jam.com
 q : Search the specific tag name, default is "itsarah".<br>
 refresh : Set the refresh time (in ms) to request the new media content, default is 60000.<br>
 col : Set the item number in each row, default is 4.<br>
-search : Set the serach type for searching tag media recently or top.
+search : Set the serach type for searching tag media recently or top, default is recent.
 
 logbug : Set the debug log to true will enable the debug log, default is false. 
 
