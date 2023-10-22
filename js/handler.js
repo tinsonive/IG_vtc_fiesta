@@ -199,6 +199,7 @@ function AddItem (link, type)
     if (parent.children.length > 0)
     {
       document.getElementById(row_id).insertBefore(newItem, parent.children[0]);
+
     }
     else
     {
@@ -228,9 +229,9 @@ const loopList = async () => {
       return 0;
   });
 
-  if (logbug) console.log(medialist);
-
   medialist = medialist.splice(0, medialist.length >= colshows * 2 ? colshows * 2 : medialist.length);
+
+  if (logbug) console.log(medialist);
 
   if (lastList != null)
   {
