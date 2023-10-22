@@ -257,7 +257,7 @@ const loopList = async () => {
   }
   else
   {
-    for (var i = medialist.length - 1; i >= 0 ; i++)
+    for (var i = medialist.length - 1; i >= 0 ; i--)
         AddItem(medialist[i].media_url, medialist[i].media_type);
 
     OnVideoLoaded();
