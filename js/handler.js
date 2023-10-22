@@ -196,11 +196,11 @@ function AddItem (link, type)
     const parent = document.getElementById(row_id);
     parent.classList.add("row-cols-"+colshows.toString());
 
-    if (logbug) console.log("child length : " + parent.children.length);
-
     if (parent.children.length > 0)
     {
       document.getElementById(row_id).insertBefore(newItem, parent.children[0]);
+
+      console.log(parent.children[0]);
 
     }
     else
