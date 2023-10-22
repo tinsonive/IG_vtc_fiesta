@@ -198,8 +198,6 @@ function AddItem (link, type)
 
     if (parent.children.length > 0)
     {
-      console.log(parent.children);
-      console.log(parent.firstChild);
       document.getElementById(row_id).insertBefore(newItem, parent.firstChild);
     }
     else
@@ -250,7 +248,7 @@ const loopList = async () => {
           RemoveItems (tobeDelNum);
       }
 
-      for (var i = 0; i < intersection.length; i++)
+      for (var i = intersection.length - 1; i >= 0; i--)
         AddItem(intersection[i].media_url, intersection[i].media_type);
 
       OnVideoLoaded();
@@ -259,7 +257,7 @@ const loopList = async () => {
   }
   else
   {
-    for (var i = 0; i < medialist.length; i++)
+    for (var i = medialist.length - 1; i >= 0 ; i++)
         AddItem(medialist[i].media_url, medialist[i].media_type);
 
     OnVideoLoaded();
