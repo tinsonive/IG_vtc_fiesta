@@ -198,12 +198,9 @@ function AddItem (link, type)
 
     if (parent.children.length > 0)
     {
-      document.getElementById(row_id).insertBefore(newItem, parent.firstChild);
-
-      console.log(parent.firstChild);
-
       console.log(parent.children);
-
+      console.log(parent.firstChild);
+      document.getElementById(row_id).insertBefore(newItem, parent.firstChild);
     }
     else
     {
