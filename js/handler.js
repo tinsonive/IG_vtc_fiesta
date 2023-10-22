@@ -228,6 +228,8 @@ const loopList = async () => {
       return 0;
   });
 
+  if (logbug) console.log(medialist);
+
   medialist = medialist.splice(0, medialist.length >= colshows * 2 ? colshows * 2 : medialist.length);
 
   if (lastList != null)
